@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col } from "reactstrap";
 import PhotoCard from "../PhotoCard";
+import "./PhotoList.scss";
 
 PhotoList.propTypes = {
   photoList: PropTypes.array,
@@ -19,7 +20,17 @@ function PhotoList(props) {
   const { photoList, onPhotoEditClick, onPhotoRemoveClick } = props;
 
   return (
-    <Row>
+    <div className="container">
+      {photoList.map((photo) => (
+        <div key={photo.title} className="item">
+          <PhotoCard
+            photo={photo}
+            onEditClick={onPhotoEditClick}
+            onRemoveClick={onPhotoRemoveClick}
+          />
+        </div>
+      ))}
+      {/* <Row>
       {photoList.map((photo) => (
         <Col key={photo.title} xs="12" md="6" lg="3">
           <PhotoCard
@@ -29,7 +40,8 @@ function PhotoList(props) {
           />
         </Col>
       ))}
-    </Row>
+    </Row> */}
+    </div>
   );
 }
 
